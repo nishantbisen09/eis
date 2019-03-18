@@ -1,0 +1,108 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/']" style=" font-family:'Sofia'"
+    >BroadCasta</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    style="outline:none"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link" [routerLink]="['/']" style="font-family: 'Aladin'"
+          >Home
+        </a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="this.authService.loggedIn()"
+      >
+        <a
+          class="nav-link"
+          [routerLink]="['/dashboard']"
+          style="font-family: 'Aladin'"
+          >Dashboard</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="this.authService.loggedIn()"
+      >
+        <a
+          class="nav-link"
+          [routerLink]="['/profile']"
+          style="font-family: 'Aladin'"
+          >Profile</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="!this.authService.loggedIn()"
+      >
+        <a
+          class="nav-link"
+          [routerLink]="['/login']"
+          style="font-family: 'Aladin'"
+          >Login</a
+        >
+      </li>
+      <li></li>
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="!this.authService.loggedIn()"
+      >
+        <a
+          class="nav-link"
+          style="font-family: 'Aladin'"
+          [routerLink]="['/register']"
+          >Register
+        </a>
+      </li>
+
+      <li
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a
+          class="nav-link"
+          style="font-family: 'Aladin'"
+          [routerLink]="['/eventlist']"
+          >EVENTS</a
+        >
+      </li>
+      <li class="nav-item" *ngIf="this.authService.loggedIn()">
+        <a
+          class="nav-link"
+          href="#"
+          (click)="onLogoutClick()"
+          style="font-family: 'Aladin'"
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>

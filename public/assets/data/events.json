@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Code Marathon",
+    "description": "This is a This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. wide recognised event and it also has some exiting prizes",
+    "date": "today",
+    "image": "card.png"
+  },
+  {
+    "id": 2,
+    "title": "Rangoli competition",
+    "description": "This is a nation wide recognised event and it also has some exiting prizes",
+    "date": "yesterday",
+    "image": "rangoli.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Hardware assembly competition",
+    "description": "This is a nation wide recognised event and it also has some exiting prizes",
+    "date": "yesterday",
+    "image": "hardware.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Group discussion and Debate competition",
+    "description": "This is a nation wide recognised event and it also has some exiting prizes",
+    "date": "yesterday",
+    "image": "group.png"
+  }
+]

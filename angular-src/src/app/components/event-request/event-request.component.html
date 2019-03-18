@@ -1,0 +1,41 @@
+<div class="container" *ngIf="1">
+  <app-back></app-back>
+  <h3>Approve Events</h3>
+  <br />
+  <table class="table table-hover table-light">
+    <thead>
+      <tr>
+        <th scope="col">Event Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Approve</th>
+        <th scope="col">Reject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hov" *ngFor="let event of events">
+        <td class="hov" [routerLink]="['/eventlist', event.event_id]">
+          {{ event.title }}
+        </td>
+        <td>{{ event.propdate }}</td>
+        <td>{{ event.status }}</td>
+        <td>
+          <button
+            class="btn btn-success"
+            (click)="actionOnEvent(event.event_id, 'approved')"
+          >
+            Approve
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="actionOnEvent(event.event_id, 'rejected')"
+          >
+            Reject
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

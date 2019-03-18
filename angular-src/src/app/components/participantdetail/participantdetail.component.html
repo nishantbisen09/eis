@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <a class="hov" (click)="back()">
+        <u> &larr; Back</u>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="participants.length > 0">
+  <app-back></app-back>
+
+  <h3>Participant Details...</h3>
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">College</th>
+        <th scope="col">Contact no.</th>
+        <th scope="col">Participation date</th>
+        <th scope="col">Payment status</th>
+        <th scope="col">Payment mode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hov" *ngFor="let participant of participants">
+        <td>{{ participant.name }}</td>
+        <td>{{ participant.college }}</td>
+        <td>{{ participant.contact }}</td>
+        <td>{{ participant.date_participated }}</td>
+        <td>{{ participant.payment_status }}</td>
+        <td>{{ participant.payment_mode }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" *ngIf="participants.length == 0">
+  <app-back></app-back>
+  <div class="jumbotron">
+    <h3 class="h3">Currently there are no participants for your event.</h3>
+  </div>
+</div>

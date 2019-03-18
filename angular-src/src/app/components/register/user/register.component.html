@@ -1,0 +1,102 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-md-6">
+        <form (submit)="OnUserRegister()">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="name">Full name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  placeholder="Enter your name"
+                  [(ngModel)]="name"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="type">User-Type</label>
+                <select class="custom-select" name="type" [(ngModel)]="type">
+                  <option value="student">Student</option>
+                  <option value="subadmin">Sub-Admin</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  placeholder="Enter email"
+                  [(ngModel)]="email"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="contact">Contact</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="contact"
+                  placeholder="Contact"
+                  [(ngModel)]="contact"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Username"
+                  [(ngModel)]="username"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Password"
+                  [(ngModel)]="password"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="college">College</label>
+            <input
+              type="text"
+              class="form-control"
+              name="college"
+              placeholder="College"
+              [(ngModel)]="college"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-secondary">Register!</button>
+        </form>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</section>

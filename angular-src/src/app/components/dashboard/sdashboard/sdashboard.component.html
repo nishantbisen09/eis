@@ -1,0 +1,54 @@
+<section>
+  <div class="container">
+    <h3>Dashboard..</h3>
+
+    <div
+      class="hov shadow p-3 mb-3 bg-white rounded"
+      [routerLink]="['/event_request']"
+    >
+      <b>Event requests</b>
+    </div>
+    <br />
+    <div
+      class="hov shadow p-3 mb-3 bg-white rounded"
+      [routerLink]="['/my-college-events']"
+    >
+      <b>Events from my college</b>
+    </div>
+    <br />
+    <div
+      *ngIf="message"
+      class="hov shadow p-3 mb-3 bg-white rounded"
+      [routerLink]="['/register_college']"
+    >
+      <b>Register your college</b>
+    </div>
+    <br />
+
+    <div class="alert alert-warning" role="alert" *ngIf="message">
+      <h4 class="alert-heading">Oops!</h4>
+      <p>
+        It seems that you have not yet registered your college..
+      </p>
+      <hr />
+      <p class="mb-0">
+        Register Your college so that your students can create events.
+        <br />
+        Its simple..
+      </p>
+    </div>
+
+    <div class="alert alert-success" role="alert" *ngIf="registered">
+      <h4 class="alert-heading">Yayy!</h4>
+      <p>
+        Your request for registration has been submitted <br />
+        You will not see this message once your college is approved.
+      </p>
+
+      <hr />
+      <p class="mb-0">
+        Your patience is always appreciated.
+      </p>
+    </div>
+  </div>
+</section>

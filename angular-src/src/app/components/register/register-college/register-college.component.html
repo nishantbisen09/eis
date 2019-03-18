@@ -1,0 +1,94 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-md-6">
+        <h3>College Registration...</h3>
+
+        <div class="form-group"></div>
+        <form (submit)="onCollegeRegister()">
+          <div class="form-group">
+            <label>College Name</label>
+            <input
+              type="text"
+              name="collegeName"
+              class="form-control"
+              [(ngModel)]="collegeName"
+              placeholder="Enter college name"
+            />
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>College Email</label>
+                <input
+                  type="text"
+                  name="collegeEmail"
+                  class="form-control"
+                  [(ngModel)]="collegeEmail"
+                  placeholder="someone@example.com"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>City</label>
+                <input
+                  type="text"
+                  name="collegeCity"
+                  class="form-control"
+                  [(ngModel)]="collegeCity"
+                  placeholder="Enter College Location"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Contact no.</label>
+                <input
+                  type="text"
+                  name="collegeContact"
+                  class="form-control"
+                  [(ngModel)]="collegeContact"
+                  placeholder="Contact no."
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Unique registration number</label>
+                <input
+                  type="text"
+                  name="collegeRNumber"
+                  class="form-control"
+                  [(ngModel)]="collegeRNumber"
+                  placeholder="Unique Registration Number"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Address</label>
+            <textarea
+              name="collegeAddress"
+              cols="20"
+              rows="4"
+              class="form-control"
+              [(ngModel)]="collegeAddress"
+              placeholder="Complete address with postal code"
+            >
+            </textarea>
+          </div>
+
+          <button class="btn btn-secondary" type="submit">Register!</button>
+        </form>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</section>

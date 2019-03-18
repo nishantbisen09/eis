@@ -1,0 +1,19 @@
+<div class="card hovercard" *ngIf="user != null">
+  <div class="cardheader"></div>
+  <div class="avatar">
+    <img alt="" [src]="user.image" />
+  </div>
+  <div class="info">
+    <div class="title">
+      <a [routerLink]="['/profile']">{{ user.name }}</a>
+    </div>
+    <div class="desc">{{ user.type }}</div>
+    <div class="desc">{{ user.email }}</div>
+    <div class="desc">{{ user.college }}</div>
+  </div>
+  <div class="bottom">
+    <button class="btn btn-dark" [routerLink]="['/editprofile']">
+      EDIT
+    </button>
+  </div>
+</div>

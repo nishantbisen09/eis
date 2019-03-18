@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <a class="hov" (click)="back()">
+        <u> &larr; Back</u>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="colleges.length > 0">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">College Name</th>
+        <th scope="col">Unique no.</th>
+        <th scope="col">Approve</th>
+        <th scope="col">Reject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let college of colleges">
+        <td>{{ college.collegeName }}</td>
+        <td>{{ college.collegeRNumber }}</td>
+        <td>
+          <button
+            class="btn btn-success"
+            (click)="actionOnCollege(college.collegeName, 'approved')"
+          >
+            Approve
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="actionOnCollege(college.collegeName, 'rejected')"
+          >
+            Reject
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" *ngIf="colleges.length == 0">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-md-6">
+      <div class="jumbotron">
+        <h3>There are no college requests</h3>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

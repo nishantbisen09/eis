@@ -1,0 +1,33 @@
+<div class="container" *ngIf="events.length > 0">
+  <app-back></app-back>
+  <h3>Hosted Events</h3>
+  <br />
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Event Name</th>
+        <th scope="col">Proposed Date</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="hov"
+        *ngFor="let event of events"
+        style="cursor:pointer"
+        [routerLink]="['/hostedevents', event.event_id]"
+      >
+        <td>{{ event.title }}</td>
+        <td>{{ event.propdate }}</td>
+        <td>{{ event.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" *ngIf="events.length == 0">
+  <app-back></app-back>
+  <div class="jumbotron">
+    <h3 class="h3">Please host an event, its free!</h3>
+  </div>
+</div>

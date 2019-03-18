@@ -1,0 +1,71 @@
+<div class="container emp-profile" *ngIf="user">
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-img">
+          <img class="rounded-circle" [src]="user.image" alt="" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="container tab-content profile-tab" id="myTabContent">
+          <div class="row">
+            <div class="col">
+              <label>Name</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ user.name }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>User Id</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ user.username }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Email</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ user.email }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Phone</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ user.contact }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>College</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{ user.college }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>City</label>
+            </div>
+            <div class="col-md-6">
+              <p>Nagpur</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Interests</label>
+            </div>
+            <div class="col-md-6">
+              <p>Photography</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

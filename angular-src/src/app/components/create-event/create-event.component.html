@@ -1,0 +1,123 @@
+<div class="container">
+  <app-back></app-back>
+  <h1>Create Event</h1>
+  <form (submit)="createEvent()" class="form-group">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="title">Event Title</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="title"
+          class="form-control"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="category">Category</label>
+        <input
+          name="category"
+          type="text"
+          [(ngModel)]="category"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          cols="20"
+          rows="4"
+          [(ngModel)]="description"
+          class="form-control"
+        ></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="image">Image</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01"
+              >Upload</span
+            >
+          </div>
+          <div class="custom-file">
+            <input
+              name="image"
+              (change)="onImageSelected($event)"
+              type="file"
+              class="custom-file-input"
+              id="inputGroupFile01"
+              aria-describedby="inputGroupFileAddon01"
+            />
+            <label class="custom-file-label" for="inputGroupFile01"
+              >Choose file</label
+            >
+          </div>
+        </div>
+        <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+          <img [src]="imagePreview" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="eventfee">Event Fee</label>
+        <input
+          name="eventfee"
+          type="text"
+          [(ngModel)]="eventfee"
+          class="form-control"
+          placeholder="Rs.100"
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="tags">Duration</label>
+        <input
+          name="duration"
+          type="text"
+          [(ngModel)]="duration"
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="tags">Tags</label>
+        <input
+          name="tags"
+          type="text"
+          [(ngModel)]="tags"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <label for="propdate">Proposed Date</label>
+    <input
+      type="date"
+      class="form-control"
+      name="propdate"
+      [(ngModel)]="propdate"
+    />
+
+    <label for="college">College</label>
+    <select name="college" id="" class="custom-select" [(ngModel)]="college">
+      <option
+        *ngFor="let college of AllColleges"
+        [value]="college.collegeName"
+        >{{ college.collegeName }}</option
+      >
+    </select>
+
+    <label for="location">Location</label>
+    <input
+      name="location"
+      type="text"
+      class="form-control"
+      [(ngModel)]="location"
+    />
+    <br />
+    <button type="submit" class="btn btn-secondary">Create Event!</button>
+  </form>
+</div>

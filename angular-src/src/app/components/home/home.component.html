@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <img
+    src="../../../assets/images/eis.png"
+    class="img-fluid"
+    alt="Responsive image"
+  />
+</div>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="../../../assets/images/Integrate_and_broadcast.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Integrate and Broadcast</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a [routerLink]="['/postevent']" class="btn btn-primary"
+              >Create Event</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="../../../assets/images/access_anywhere.png"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Access anywhere!</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a
+              [routerLink]="['/register']"
+              class="btn btn-primary"
+              *ngIf="!this.authService.loggedIn()"
+              >Register</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src=".././../../assets/images/create_event_on_the_go.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Browse Events On The Go!</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a [routerLink]="['/eventlist']" class="btn btn-primary"
+              >Browse Events</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

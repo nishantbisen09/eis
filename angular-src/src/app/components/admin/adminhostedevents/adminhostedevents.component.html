@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <a class="hov" (click)="back()">
+        <u> &larr; Back</u>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h3>Hosted Events..</h3>
+  <table class="table table-bordered" *ngIf="events != null">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Event Image</th>
+        <th scope="col">Event Name</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let event of events">
+      <tr>
+        <td scope="row">{{ event.event_id }}</td>
+        <td>
+          <img
+            class="img-fluid"
+            src="{{ event.image }}"
+            style="height:100px;width:auto;"
+          />
+        </td>
+        <td>{{ event.title }}</td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="onDeleteEvent(event.event_id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,30 @@
+<div class="container" *ngIf="events && events.length > 0">
+  <app-back></app-back>
+  <h3>Approve Events</h3>
+  <br />
+  <table class="table table-hover table-light">
+    <thead>
+      <tr>
+        <th scope="col">Event Name</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hov" *ngFor="let event of events">
+        <td class="hov" [routerLink]="['/eventlist', event.event_id]">
+          {{ event.title }}
+        </td>
+        <td>{{ event.propdate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" *ngIf="!events && events.length == 0">
+  <app-back></app-back>
+  <div class="jumbotron">
+    <h3 class="h3">
+      There are no events from your college.
+    </h3>
+  </div>
+</div>

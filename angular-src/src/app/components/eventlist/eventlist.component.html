@@ -1,0 +1,114 @@
+<section style="margin-top: 4rem">
+  <div class="container" *ngIf="events.length == 0">
+    <div class="jumbotron">
+      <h3 class="h3">Please host an event, its free!</h3>
+    </div>
+  </div>
+  <div class="container" id="content" *ngIf="events.length > 0">
+    <div class="row">
+      <div class="col  d-none d-sm-block">
+        <div style="position:fixed;float:left;width: 17%">
+          <app-profilecard></app-profilecard>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div *ngFor="let event of events" class="card mb-3">
+          <img src="{{ event.image }}" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">
+              {{ event.description.substring(0, 200) }}...
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Posted {{ event.date }}</small>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn" id="green">
+                  <i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i>
+                </button>
+                <button class="btn" id="red">
+                  <i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="col-md-6">
+                <div class="text-right">
+                  <a
+                    [routerLink]="['/eventlist', event.event_id]"
+                    class="btn btn-dark"
+                    >VIEW DETAILS</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col d-none d-sm-block">
+        <div style="position:fixed;float:right;width:100%;">
+          <div class="card bg-light mb-3" style="max-width: 15rem;">
+            <div class="card-header">Categories</div>
+            <ul class="list-group checked">
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="cultural"
+                  (change)="onFilter($event)"
+                />
+                Cultural
+              </li>
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="Technical"
+                  (change)="onFilter($event)"
+                />
+                Technical
+              </li>
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="food"
+                  (change)="onFilter($event)"
+                />
+                Cooking
+              </li>
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="sports"
+                  (change)="onFilter($event)"
+                />
+                Sports
+              </li>
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="photography"
+                  (change)="onFilter($event)"
+                />
+                Photography
+              </li>
+              <button class="btn btn-dark" (click)="onCategorySubmit()">
+                SUBMIT!
+              </button>
+            </ul>
+          </div>
+          <div class="card bg-light mb-3" style="max-width: 15rem; ">
+            <div class="card-header">Cities</div>
+            <ul class="list-group">
+              <li class="list-group-item"><input type="checkbox" /> Nagpur</li>
+              <li class="list-group-item"><input type="checkbox" /> Mumbai</li>
+              <li class="list-group-item"><input type="checkbox" /> Pune</li>
+
+              <button class="btn btn-dark">SUBMIT!</button>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

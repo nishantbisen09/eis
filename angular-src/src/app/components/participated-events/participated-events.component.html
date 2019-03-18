@@ -1,0 +1,33 @@
+<div class="container" *ngIf="events.length > 0">
+  <app-back></app-back>
+  <h3>Participated Events</h3>
+  <br />
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Event Name</th>
+        <th scope="col">Event Date</th>
+        <th scope="col">College</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hov" *ngFor="let event of events">
+        <td>{{ event.event_title }}</td>
+        <td>{{ event.event_propdate }}</td>
+        <td>{{ event.college }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container" *ngIf="events.length == 0">
+  <app-back></app-back>
+  <div class="jumbotron">
+    <h3 class="h3">
+      You haven't participated in any event!.
+      <button class="btn btn-secondary" [routerLink]="['/eventlist']">
+        Browse Events
+      </button>
+    </h3>
+  </div>
+</div>
