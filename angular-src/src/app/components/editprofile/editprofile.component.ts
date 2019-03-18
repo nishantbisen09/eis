@@ -73,7 +73,7 @@ export class EditprofileComponent implements OnInit {
       if (this.contact == "") this.contact = old.contact;
       console.log(this.contact);
       if (this.college == "") this.college = old.college;
-      if (this.imageName == "") this.college = old.image;
+      if (this.imageName == "") this.imageName = old.image;
 
       console.log(this.name);
 
