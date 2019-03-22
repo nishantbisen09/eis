@@ -2,22 +2,25 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { FlashMessagesService } from "angular2-flash-messages";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.css"]
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
   user: any;
 
   constructor(
     private authService: AuthService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private flashMessageService: FlashMessagesService
+    private flashMessageService: FlashMessagesService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.router.navigate(["/profile"]);
     this.spinnerService.show();
     this.authService.getUserProfile().subscribe(
       profile => {
@@ -34,6 +37,4 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-  ngOnDestroy() {}
 }

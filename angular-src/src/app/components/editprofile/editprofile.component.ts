@@ -71,11 +71,8 @@ export class EditprofileComponent implements OnInit {
       if (this.name == "") this.name = old.name;
       if (this.email == "") this.email = old.email;
       if (this.contact == "") this.contact = old.contact;
-      console.log(this.contact);
       if (this.college == "") this.college = old.college;
       if (this.imageName == "") this.imageName = old.image;
-
-      console.log(this.name);
 
       if (this.contact.length != 10) {
         this.flashMessage.show("Contact must be 10 digits", {
@@ -129,8 +126,6 @@ export class EditprofileComponent implements OnInit {
       this.college == "" &&
       this.image == null
     ) {
-      console.log("enter one field");
-
       return false;
     } else {
       return true;
