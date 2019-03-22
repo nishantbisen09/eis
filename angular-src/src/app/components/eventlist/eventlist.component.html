@@ -27,10 +27,19 @@
           <div class="card-footer">
             <div class="row">
               <div class="col-md-6">
-                <button class="btn" id="green">
+                <span class="badge badge-secondary">{{ event.likes }}</span>
+                <button
+                  class="btn"
+                  id="green"
+                  (click)="onReaction('like', event.event_id, event.likes)"
+                >
                   <i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i>
                 </button>
-                <button class="btn" id="red">
+                <button
+                  class="btn"
+                  id="red"
+                  (click)="onReaction('dislike', event.event_id)"
+                >
                   <i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i>
                 </button>
               </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { FlashMessagesService } from "angular2-flash-messages";
@@ -20,7 +20,11 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.router.navigate(["/profile"]);
+    this.getUserDetails();
+    this.refreshData();
+  }
+
+  getUserDetails() {
     this.spinnerService.show();
     this.authService.getUserProfile().subscribe(
       profile => {
@@ -36,5 +40,11 @@ export class ProfileComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  refreshData() {
+    setTimeout(() => {
+      this.getUserDetails();
+    }, 3000);
   }
 }

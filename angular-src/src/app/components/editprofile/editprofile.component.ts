@@ -63,9 +63,11 @@ export class EditprofileComponent implements OnInit {
 
     this.authService.getUserProfile().subscribe(old => {
       if (this.image != null) {
-        this.authService.uploadImage(this.image).subscribe(response => {
-          console.log(response);
-        });
+        this.authService
+          .uploadImage(this.image, old.user_id)
+          .subscribe(response => {
+            console.log(response);
+          });
       }
 
       if (this.name == "") this.name = old.name;
@@ -105,6 +107,7 @@ export class EditprofileComponent implements OnInit {
             cssClass: "alert-success",
             timeout: 3000
           });
+
           this.router.navigate(["/profile"]);
         } else {
           this.spinnerService.hide();
@@ -112,7 +115,6 @@ export class EditprofileComponent implements OnInit {
             cssClass: "alert-danger",
             timeout: 3000
           });
-          this.router.navigate(["/editprofile"]);
         }
       });
     });

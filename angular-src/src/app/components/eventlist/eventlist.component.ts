@@ -3,6 +3,7 @@ import { EventService } from "../../services/event.service";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "src/app/services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-eventlist",
@@ -17,7 +18,8 @@ export class EventlistComponent implements OnInit {
     private _eventService: EventService,
     private spinnerService: Ng4LoadingSpinnerService,
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -30,12 +32,27 @@ export class EventlistComponent implements OnInit {
     }
 
     this.spinnerService.show();
+    this.getEvents();
+  }
+
+  getEvents() {
     this._eventService.getAllEvents().subscribe(response => {
       if (response) {
         this.events = response.events.filter(e => e.status == "approved");
         this.spinnerService.hide();
         console.log(this.events);
       }
+    });
+  }
+
+  onReaction(action, event_id) {
+    const task = {
+      action: action,
+      event_id: event_id
+    };
+    this._eventService.reaction(task).subscribe(response => {
+      console.log(response);
+      this.getEvents();
     });
   }
 

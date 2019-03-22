@@ -91,11 +91,11 @@ export class AuthService {
     localStorage.setItem("user", JSON.stringify(user));
   }
 
-  uploadImage(image) {
+  uploadImage(image, id) {
     this.mode();
     const fd = new FormData();
     fd.append("image", image, image.name);
-    return this.http.post(this.hostname + "users/userimage", fd);
+    return this.http.post(this.hostname + "users/userimage/" + id, fd);
   }
 
   logout() {

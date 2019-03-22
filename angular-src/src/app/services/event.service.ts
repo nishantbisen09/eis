@@ -21,16 +21,21 @@ export class EventService {
     return this.http.post(this.hostname + "events/postevent", event);
   }
 
-  uploadImage(image) {
+  uploadImage(image, id) {
     this.mode();
     const fd = new FormData();
     fd.append("image", image, image.name);
-    return this.http.post(this.hostname + "events/uploadimage", fd);
+    return this.http.post(this.hostname + "events/uploadimage/" + id, fd);
   }
 
   getAllEvents(): Observable<any> {
     this.mode();
     return this.http.get(this.hostname + "events/eventlist");
+  }
+
+  reaction(task): Observable<any> {
+    this.mode();
+    return this.http.post(this.hostname + "events/reaction", task);
   }
 
   addparticipant(participant): Observable<any> {

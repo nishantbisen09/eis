@@ -17,8 +17,6 @@ const uploadEventImage = multer({ storage: storage });
 //Create event
 
 router.post("/postevent", (req, res) => {
-  7;
-  const url = req.protocol + "://" + req.get("host");
   Event.countDocuments((err, count) => {
     const event = new Event({
       event_id: count + 1,
@@ -32,8 +30,7 @@ router.post("/postevent", (req, res) => {
       tags: req.body.tags,
       category: req.body.category,
       college: req.body.college,
-      location: req.body.location,
-      image: url + "/images/" + req.body.image
+      location: req.body.location
     });
     event
       .save()
@@ -51,10 +48,63 @@ router.post("/postevent", (req, res) => {
 });
 
 //UPLOAD IMAGE
+const upload = require("./multer");
 
-router.post("/uploadimage", uploadEventImage.single("image"), (req, res) => {
-  res.json({ message: "worked" });
-  console.log(req.file);
+const singleUpload = upload.single("image");
+
+router.post("/uploadimage/:id", (req, res) => {
+  var id = req.params.id;
+
+  singleUpload(req, res, (err, some) => {
+    if (err) {
+      return res.json({
+        msg: "Image Upload Error",
+        detail: err.message
+      });
+    } else {
+      Event.updateOne(
+        { event_id: id },
+        { $set: { image: req.file.location } },
+        (err, user) => {
+          if (err) {
+            console.log(err);
+            return res.json({ success: false, msg: "Failed to upload photo" });
+          } else {
+            console.log("user changed");
+
+            return res.json({
+              success: true,
+              msg: "Details updated:" + req.file.location
+            });
+          }
+        }
+      );
+    }
+  });
+});
+//UPLOAD IMAGE END
+
+//LIKE/DISLIKE EVENT
+
+router.post("/reaction", (req, response) => {
+  var action = req.body.action;
+  var id = req.body.event_id;
+  Event.findOne({ event_id: id }, (err, res) => {
+    var count = res.likes;
+    if (action == "like") {
+      count++;
+    } else if (action == "dislike" && count != 0) {
+      count--;
+    }
+    console.log(count);
+
+    Event.updateOne({ event_id: id }, { $set: { likes: count } }, (err, cb) => {
+      if (err) {
+        response.json({ success: false, error: err });
+      }
+      response.json({ success: true, msg: "action successfull" });
+    });
+  });
 });
 
 //get all the events

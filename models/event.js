@@ -15,7 +15,8 @@ const eventSchema = mongoose.Schema({
   location: { type: String, required: true },
   category: { type: String, require: true },
   image: { type: String },
-  status: { type: String, default: "unapproved" }
+  status: { type: String, default: "unapproved" },
+  likes: { type: Number, default: 0 }
 });
 
 module.exports = mongoose.model("Event", eventSchema);

@@ -1,19 +1,59 @@
+//modules
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const config = require("../config/database");
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "./images/userprofile");
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.originalname);
-  }
+
+//image upload code starts here
+
+const upload = require("./multer");
+
+const singleUpload = upload.single("image");
+
+router.post("/userimage/:id", (req, res) => {
+  var id = req.params.id;
+
+  singleUpload(req, res, (err, some) => {
+    if (err) {
+      return res.json({
+        msg: "Image Upload Error",
+        detail: err.message
+      });
+    } else {
+      User.updateOne(
+        { user_id: id },
+        { $set: { image: req.file.location } },
+        (err, user) => {
+          if (err) {
+            console.log(err);
+            return res.json({ success: false, msg: "Failed to upload photo" });
+          } else {
+            console.log("user changed");
+
+            return res.json({
+              success: true,
+              msg: "Details updated:" + req.file.location
+            });
+          }
+        }
+      );
+    }
+  });
 });
-const uploadUserImage = multer({ storage: storage });
+
+//image upload code ends here
+
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//     cb(null, "./images/userprofile");
+//   },
+//   filename: function(req, file, cb) {
+//     cb(null, file.originalname);
+//   }
+// });
+//const uploadUserImage = multer({ storage: upload });
 
 //register
 router.post("/register", (req, res) => {
@@ -88,21 +128,20 @@ router.post("/authenticate", (req, res) => {
 
 //upload user image
 
-router.post("/userimage", uploadUserImage.single("image"), (req, res) => {
-  res.json({ message: "worked" });
-  console.log(req.file);
-});
+// router.post("/userimage", uploadUserImage.single("image"), (req, res) => {
+//   // res.json({ message: "worked" });
+//   console.log(req.file);
+//   return res.json({ imageUrl: req.file.req.file.location });
+// });
 
 //update
 router.put("/editprofile", (req, res) => {
-  const url = req.protocol + "://" + req.get("host");
   let newUser = {
     user_id: req.body.user_id,
     name: req.body.name,
     email: req.body.email,
     contact: req.body.contact,
-    college: req.body.college,
-    image: url + "/images/userprofile/" + req.body.image
+    college: req.body.college
   };
   console.log(newUser);
 

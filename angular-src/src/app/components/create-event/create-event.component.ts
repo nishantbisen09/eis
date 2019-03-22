@@ -24,6 +24,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   image: File;
   imagePreview: string;
   user_id: any;
+  event_id: Number;
   constructor(
     private eventService: EventService,
     private flashMessageService: FlashMessagesService,
@@ -41,6 +42,10 @@ export class CreateEventComponent implements OnInit, OnDestroy {
         c => c.collegeStatus == "approved"
       );
     });
+
+    this.eventService.getAllEvents().subscribe(response => {
+      this.event_id = response.events.length + 1;
+    });
   }
 
   ngOnDestroy() {}
@@ -57,6 +62,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     this.SpinnerService.show();
 
     const event = {
+      event_id: this.event_id,
       user_id: this.user_id,
       title: this.title,
       description: this.description,
@@ -70,12 +76,13 @@ export class CreateEventComponent implements OnInit, OnDestroy {
       image: this.image.name
     };
 
-    this.eventService.uploadImage(this.image).subscribe(data => {
-      console.log(data);
-    });
-
     this.eventService.createEvent(event).subscribe(data => {
       if (data.success) {
+        this.eventService
+          .uploadImage(this.image, this.event_id)
+          .subscribe(data => {
+            console.log(data);
+          });
         this.flashMessageService.show(data.message, {
           cssClass: "alert-success",
           timeout: 5000
