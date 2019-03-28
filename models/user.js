@@ -37,6 +37,16 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  interest: {
+    type: String
+  },
+  status: {
+    type: String,
+    default: "unapproved"
+  },
+  document: {
+    type: String
   }
 });
 

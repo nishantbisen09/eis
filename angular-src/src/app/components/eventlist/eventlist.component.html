@@ -9,6 +9,13 @@
       <div class="col  d-none d-sm-block">
         <div style="position:fixed;float:left;width: 17%">
           <app-profilecard></app-profilecard>
+          <button
+            class="btn btn-dark"
+            (click)="onPreferences()"
+            *ngIf="authService.loggedIn()"
+          >
+            Show My Preferences!
+          </button>
         </div>
       </div>
 
@@ -64,7 +71,7 @@
               <li class="list-group-item">
                 <input
                   type="checkbox"
-                  value="cultural"
+                  value="Cultural"
                   (change)="onFilter($event)"
                 />
                 Cultural
@@ -80,7 +87,7 @@
               <li class="list-group-item">
                 <input
                   type="checkbox"
-                  value="food"
+                  value="Cooking"
                   (change)="onFilter($event)"
                 />
                 Cooking
@@ -88,7 +95,7 @@
               <li class="list-group-item">
                 <input
                   type="checkbox"
-                  value="sports"
+                  value="Sports"
                   (change)="onFilter($event)"
                 />
                 Sports
@@ -96,7 +103,7 @@
               <li class="list-group-item">
                 <input
                   type="checkbox"
-                  value="photography"
+                  value="Photography"
                   (change)="onFilter($event)"
                 />
                 Photography
@@ -109,11 +116,34 @@
           <div class="card bg-light mb-3" style="max-width: 15rem; ">
             <div class="card-header">Cities</div>
             <ul class="list-group">
-              <li class="list-group-item"><input type="checkbox" /> Nagpur</li>
-              <li class="list-group-item"><input type="checkbox" /> Mumbai</li>
-              <li class="list-group-item"><input type="checkbox" /> Pune</li>
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="Nagpur"
+                  (change)="onFilterCity($event)"
+                />
+                Nagpur
+              </li>
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="Mumbai"
+                  (change)="onFilterCity($event)"
+                />
+                Mumbai
+              </li>
+              <li class="list-group-item">
+                <input
+                  type="checkbox"
+                  value="Pune"
+                  (change)="onFilterCity($event)"
+                />
+                Pune
+              </li>
 
-              <button class="btn btn-dark">SUBMIT!</button>
+              <button class="btn btn-dark" (click)="onCitySubmit()">
+                SUBMIT!
+              </button>
             </ul>
           </div>
         </div>

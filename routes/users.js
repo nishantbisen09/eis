@@ -45,19 +45,29 @@ router.post("/userimage/:id", (req, res) => {
 
 //image upload code ends here
 
-// const storage = multer.diskStorage({
-//   destination: function(req, file, cb) {
-//     cb(null, "./images/userprofile");
-//   },
-//   filename: function(req, file, cb) {
-//     cb(null, file.originalname);
-//   }
-// });
-//const uploadUserImage = multer({ storage: upload });
+//UPLOAD IMAGE
+
+router.post("/docupload", (req, res) => {
+  singleUpload(req, res, (err, some) => {
+    if (err) {
+      return res.json({
+        success: false,
+        msg: "Image Upload Error",
+        detail: err.message
+      });
+    } else {
+      return res.json({
+        success: true,
+        msg: "Details updated:" + req.file.location
+      });
+    }
+  });
+});
+//UPLOAD IMAGE END
 
 //register
 router.post("/register", (req, res) => {
-  const url = req.protocol + "://" + req.get("host");
+  // const url = req.protocol + "://" + req.get("host");
   User.countDocuments((err, count) => {
     let newUser = new User({
       user_id: count + 1,
@@ -66,9 +76,12 @@ router.post("/register", (req, res) => {
       contact: req.body.contact,
       college: req.body.college,
       username: req.body.username,
+      interest: req.body.interest,
+      document: req.body.document,
       password: req.body.password,
       type: req.body.type,
-      image: url + "/images/userprofile/default.png"
+      image:
+        "https://eisimageupload.s3.ap-southeast-1.amazonaws.com/default.png"
     });
     User.addUser(newUser, (err, user) => {
       if (err) {
@@ -157,6 +170,7 @@ router.put("/editprofile", (req, res) => {
 });
 
 //profile
+
 router.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
@@ -164,5 +178,34 @@ router.get(
     res.json(req.user);
   }
 );
+
+//get unapproved status
+router.get("/getsubadmin", (req, res) => {
+  User.find({ type: "subadmin" }, (err, response) => {
+    console.log(response);
+    if (err) console.log(err);
+
+    res.json(response);
+  });
+});
+
+//update user status
+router.put("/updateuser", (req, res) => {
+  const userid = req.body.user_id;
+  const action = req.body.action;
+  User.updateOne(
+    { user_id: userid },
+    { $set: { status: action } },
+    (err, raw) => {
+      if (err) {
+        res.json({ success: false });
+      } else {
+        res.json({ success: true });
+      }
+    }
+  );
+});
+
+//get all users
 
 module.exports = router;

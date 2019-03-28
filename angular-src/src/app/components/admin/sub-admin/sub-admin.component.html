@@ -6,22 +6,55 @@
       </a>
     </div>
   </div>
-  <table class="table table-bordered">
+  <table class="table table-bordered" *ngIf="users.length > 0">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Sub-Admin</th>
-        <th scope="col">Approved</th>
+        <th scope="col">Name of SubAdmin</th>
+        <th scope="col">Supporting document</th>
+        <th scope="col">Approve</th>
         <th scope="col">Reject</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Raana sayeda</td>
-        <td><button class="btn btn-success">Approved</button></td>
-        <td><button class="btn btn-danger">Reject</button></td>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>
+          <img
+            style="height:100px;width:auto;"
+            src="{{ user.document }}"
+            alt=""
+            class="image-fluid"
+          />
+        </td>
+        <td>
+          <button
+            class="btn btn-success"
+            (click)="actionOnUser(user.user_id, 'approved')"
+          >
+            Approve
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="actionOnUser(user.user_id, 'unapproved')"
+          >
+            Reject
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<div class="container" *ngIf="users.length == 0">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-md-6">
+      <div class="jumbotron">
+        <h3>There are no Subadmin requests</h3>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
 </div>

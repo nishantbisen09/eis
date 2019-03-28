@@ -15,12 +15,16 @@
 
       <div class="col-md-6">
         <label for="category">Category</label>
-        <input
+        <select
           name="category"
-          type="text"
+          id=""
+          class="custom-select"
           [(ngModel)]="category"
-          class="form-control"
-        />
+        >
+          <option *ngFor="let category of categories" [value]="category">{{
+            category
+          }}</option>
+        </select>
       </div>
     </div>
 
@@ -102,7 +106,7 @@
     />
 
     <label for="college">College</label>
-    <select name="college" id="" class="custom-select" [(ngModel)]="college">
+    <select name="college" id="" class="form-control" [(ngModel)]="college">
       <option
         *ngFor="let college of AllColleges"
         [value]="college.collegeName"
@@ -111,12 +115,9 @@
     </select>
 
     <label for="location">Location</label>
-    <input
-      name="location"
-      type="text"
-      class="form-control"
-      [(ngModel)]="location"
-    />
+    <select name="location" id="" class="form-control" [(ngModel)]="location">
+      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
     <br />
     <button type="submit" class="btn btn-secondary">Create Event!</button>
   </form>

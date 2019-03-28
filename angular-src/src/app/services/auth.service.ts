@@ -49,7 +49,11 @@ export class AuthService {
     this.mode();
     return this.http.put(this.hostname + "colleges/updatecollege", task);
   }
-
+  //update user status
+  updateUserStatus(task): Observable<any> {
+    this.mode();
+    return this.http.put(this.hostname + "users/updateuser", task);
+  }
   getAllColleges(): Observable<any> {
     this.mode();
     return this.http.get(this.hostname + "colleges/getcolleges");
@@ -62,6 +66,11 @@ export class AuthService {
     return this.http.post(this.hostname + "users/authenticate", user, {
       headers: headers
     });
+  }
+
+  getSubAdmins(): any {
+    this.mode();
+    return this.http.get(this.hostname + "users/getsubadmin");
   }
 
   getUserProfile(): any {
@@ -89,6 +98,13 @@ export class AuthService {
     this.user = user;
     localStorage.setItem("id_token", token);
     localStorage.setItem("user", JSON.stringify(user));
+  }
+
+  docUpload(image) {
+    this.mode();
+    const fd = new FormData();
+    fd.append("image", image, image.name);
+    return this.http.post(this.hostname + "users/docupload", fd);
   }
 
   uploadImage(image, id) {

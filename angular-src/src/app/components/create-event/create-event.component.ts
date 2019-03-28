@@ -11,6 +11,8 @@ import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
   styleUrls: ["./create-event.component.css"]
 })
 export class CreateEventComponent implements OnInit, OnDestroy {
+  categories = ["Technical", "Cooking", "Cultural", "Sports", "Photography"];
+  cities = ["Nagpur", "Mumbai", "Pune"];
   AllColleges = [];
   title: String;
   description: String;

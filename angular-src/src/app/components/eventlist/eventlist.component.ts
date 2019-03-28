@@ -14,6 +14,8 @@ export class EventlistComponent implements OnInit {
   public events = [];
   public user = "";
   public selectedcategory = [];
+  public prefEvents = [];
+  public selectedcity = [];
   constructor(
     private _eventService: EventService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -66,6 +68,16 @@ export class EventlistComponent implements OnInit {
     }
     console.log(this.selectedcategory);
   }
+  onFilterCity(value) {
+    if (value.target.checked) {
+      this.selectedcity.push(value.target.value);
+    } else {
+      this.selectedcity = this.selectedcity.filter(
+        c => c != value.target.value
+      );
+    }
+    console.log(this.selectedcity);
+  }
   onCategorySubmit() {
     this.spinnerService.show();
     this._eventService.getAllEvents().subscribe(response => {
@@ -84,5 +96,41 @@ export class EventlistComponent implements OnInit {
         this.spinnerService.hide();
       }
     });
+  }
+  onCitySubmit() {
+    this.spinnerService.show();
+    this._eventService.getAllEvents().subscribe(response => {
+      if (response) {
+        this.events = [];
+        response.events.filter(c => {
+          this.selectedcity.forEach(event => {
+            if (c.location == event && c.status == "approved") {
+              this.events.push(c);
+            }
+          });
+        });
+        this.spinnerService.hide();
+      }
+    });
+  }
+
+  onPreferences() {
+    this.spinnerService.show();
+    this.events = [];
+    this.authService.getUserProfile().subscribe(response => {
+      this.user = response;
+      this.prefEvents = response.interest;
+      this._eventService.getAllEvents().subscribe(resp => {
+        if (resp) {
+          resp.events.filter(e => {
+            if (e.tags.includes(this.prefEvents) && e.status == "approved") {
+              this.events.push(e);
+            }
+          });
+          this.spinnerService.hide();
+        }
+      });
+    });
+    console.log(this.events);
   }
 }

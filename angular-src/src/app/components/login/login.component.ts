@@ -10,8 +10,8 @@ import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  username: String = "";
-  password: String = "";
+  username: String;
+  password: String;
   constructor(
     private authService: AuthService,
     private router: Router,

@@ -17,7 +17,10 @@ export class RegisterComponent implements OnInit {
   password: string;
   contact: string;
   college: string;
-  type: string;
+  type: string = "student";
+  interest: string;
+  supdoc: File;
+  imagePreview: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,6 +37,19 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  onImageSelected(event) {
+    this.supdoc = event.target.files[0];
+    this.flashMessage.show("Selected Image: " + this.supdoc.name, {
+      cssClass: "alert-warning",
+      timeout: 3000
+    });
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(this.supdoc);
+  }
+
   OnUserRegister() {
     const user = {
       name: this.name,
@@ -42,7 +58,11 @@ export class RegisterComponent implements OnInit {
       password: this.password,
       contact: this.contact,
       college: this.college,
-      type: this.type
+      type: this.type,
+      interest: this.interest,
+      document:
+        "https://eisimageupload.s3.ap-southeast-1.amazonaws.com/" +
+        this.supdoc.name
     };
 
     if (!this.validateService.validateRegister(user)) {
@@ -68,6 +88,11 @@ export class RegisterComponent implements OnInit {
     this.spinnerService.show();
     this.authService.registerUser(user).subscribe(data => {
       if (data.success) {
+        //upload document
+        this.authService.docUpload(this.supdoc).subscribe(resp => {
+          console.log(resp);
+        });
+        //upload document
         this.spinnerService.hide();
         this.flashMessage.show("You are now registered, Login to continue", {
           cssClass: "alert-success",

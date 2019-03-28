@@ -21,7 +21,6 @@ import { AdminloginComponent } from "./components/admin/adminlogin/adminlogin.co
 import { AdminhostedeventsComponent } from "./components/admin/adminhostedevents/adminhostedevents.component";
 import { CollegeComponent } from "./components/admin/college/college.component";
 import { SubAdminComponent } from "./components/admin/sub-admin/sub-admin.component";
-import { NavbarComponent } from "./components/navbar/navbar.component";
 import { EditprofileComponent } from "./components/editprofile/editprofile.component";
 import { MyCollegeEventsComponent } from "./components/my-college-events/my-college-events.component";
 
@@ -58,16 +57,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-  { path: "register_college", component: RegisterCollegeComponent },
-  { path: "event_request", component: EventRequestComponent },
+  { path: "register_college", component: RegisterCollegeComponent, canActivate: [AuthGuard] },
+  { path: "event_request", component: EventRequestComponent, canActivate: [AuthGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: "admindashboard", component: AdmindashboardComponent },
-  { path: "adminhostedevents", component: AdminhostedeventsComponent },
+  { path: "admindashboard", component: AdmindashboardComponent, canActivate: [AuthGuard] },
+  { path: "adminhostedevents", component: AdminhostedeventsComponent , canActivate: [AuthGuard]},
   { path: "adminlogin", component: AdminloginComponent },
-  { path: "college", component: CollegeComponent },
-  { path: "sub-admin", component: SubAdminComponent },
-  { path: "editprofile", component: EditprofileComponent },
-  { path: "my-college-events", component: MyCollegeEventsComponent }
+  { path: "college", component: CollegeComponent, canActivate: [AuthGuard] },
+  { path: "sub-admin", component: SubAdminComponent, canActivate: [AuthGuard] },
+  { path: "editprofile", component: EditprofileComponent, canActivate: [AuthGuard] },
+  { path: "my-college-events", component: MyCollegeEventsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
