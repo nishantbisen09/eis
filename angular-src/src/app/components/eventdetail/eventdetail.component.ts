@@ -44,7 +44,7 @@ export class EventdetailComponent implements OnInit {
   }
 
   attendEvent() {
-    // this.spinnerService.show();
+    this.spinnerService.show();
 
     //chech if the user is logged in
     if (!this.authService.loggedIn()) {
