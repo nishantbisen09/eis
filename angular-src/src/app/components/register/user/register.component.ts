@@ -51,6 +51,10 @@ export class RegisterComponent implements OnInit {
   }
 
   OnUserRegister() {
+    var sname = null;
+    if (this.supdoc != null) {
+      sname = this.supdoc.name;
+    }
     const user = {
       name: this.name,
       username: this.username,
@@ -61,8 +65,7 @@ export class RegisterComponent implements OnInit {
       type: this.type,
       interest: this.interest,
       document:
-        "https://eisimageupload.s3.ap-southeast-1.amazonaws.com/" +
-        this.supdoc.name
+        "https://eisimageupload.s3.ap-southeast-1.amazonaws.com/" + sname
     };
 
     if (!this.validateService.validateRegister(user)) {
