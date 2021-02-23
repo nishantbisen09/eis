@@ -23,7 +23,21 @@ Every college has its own registered sub-admin who can approve or discard variou
 As we have a portal to manage the events from the sub-admin module. The host or the student posts an event which is forwarded to sub-admin. A sub-admin is responsible for the validation of the event. If the sub-admin approves the event then only it is hosted globally.
 Apart from this, there is a payments section which is responsible for generating event tickets and gives the count of the number of interested students to the event organizer.
 
-![link](data-flow.jpg)
+![data-flow](data-flow.jpg)
+
+# Screenshots
+
+## Home Page
+![home-page](home-page.PNG)
+
+## Events
+![events](events.PNG)
+
+## Event Details
+![event-details](event-details.PNG)
+
+## Edit Profile
+![edit-profile](edit-profile.PNG)
 
 ### A. STUDENT MODULE:
 Students will be able to browse all the events which are publicly posted and approved. He will also have access to the discussion forum below all the events, but in order to register for any event or create an event the student will have to register or login.
