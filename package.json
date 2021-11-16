@@ -8,7 +8,7 @@
     "start": "node app"
   },
   "dependencies": {
-    "aws-sdk": "^2.426.0",
+    "aws-sdk": "^2.814.0",
     "bcryptjs": "*",
     "body-parser": "*",
     "cloudinary": "^1.13.2",
