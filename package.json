@@ -16,7 +16,7 @@
     "cors": "*",
     "express": "*",
     "jsonwebtoken": "*",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "*",
     "mongoose-auto-increment": "^5.0.1",
     "multer": "^1.4.1",
